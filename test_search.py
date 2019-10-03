@@ -12,7 +12,7 @@ class TestSearch(unittest.TestCase):
         self.key = 5
         self.data_list = list(range(10))
         self.assertEqual(linear_search(self.key, self.data_list), 5)
-    
+
     def test_linear_missing(self):
         self.key = 100
         self.data_list = list(range(10))
