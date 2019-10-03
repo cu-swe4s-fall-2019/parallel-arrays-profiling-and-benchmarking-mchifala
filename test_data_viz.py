@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-from data_viz import boxplot
 import unittest
+from data_viz import boxplot
 import matplotlib
 matplotlib.use('Agg')
 

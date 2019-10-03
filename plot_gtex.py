@@ -21,11 +21,15 @@ def binary_search(key, sorted_data_list):
 
         if key == sorted_data_list[mid][0]:
             return sorted_data_list[mid][1]
-
-        if ( key < sorted_data_list[mid][0] ):
-            hi = mid
-        else:
-            lo = mid
+        
+        try:
+            if ( key < sorted_data_list[mid][0] ):
+                hi = mid
+            else:
+                lo = mid
+        except TypeError as inst:
+            print("Run-Time Error:", type(inst))
+            sys.exit(1)
 
     return -1
 
