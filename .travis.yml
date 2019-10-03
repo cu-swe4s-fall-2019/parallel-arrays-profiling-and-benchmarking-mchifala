@@ -9,6 +9,15 @@ before_install:
     - conda create --yes -n test
     - conda activate test
     - conda install -y pycodestyle
+    - conda install -y matplotlib
+    - conda install -y numpy
     - conda install --yes python=3.6
+    - echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
       
 script:
+    - pycodestyle plot_gtex.py
+    - pycodestyle data_viz.py
+    - pycodestyle test_data_viz.py
+    - pycodestyle test_search.py
+    - python test_search.py
+    - python test_data_viz.py

@@ -35,23 +35,23 @@ class TestSearch(unittest.TestCase):
 
     def test_binary_exists(self):
         self.key = 5
-        self.data_list = list(zip(range(10),range(10)))
+        self.data_list = list(zip(range(10), range(10)))
         self.assertEqual(binary_search(self.key, self.data_list), 5)
 
     def test_binary_missing(self):
         self.key = 100
-        self.data_list = list(zip(range(10),range(10)))
+        self.data_list = list(zip(range(10), range(10)))
         self.assertEqual(binary_search(self.key, self.data_list), -1)
 
     def test_binary_bad_key(self):
         self.key = '5'
-        self.data_list = list(zip(range(10),range(10)))
+        self.data_list = list(zip(range(10), range(10)))
         self.assertRaises(TypeError and
                           SystemExit, binary_search, self.key, self.data_list)
 
     def test_binary_no_key(self):
         self.key = None
-        self.data_list = list(zip(range(10),range(10)))
+        self.data_list = list(zip(range(10), range(10)))
         self.assertRaises(TypeError and
                           SystemExit, binary_search, self.key, self.data_list)
 

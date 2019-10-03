@@ -21,10 +21,10 @@ def boxplot(data_lists, label_list, title, x_label, y_label, out_file_name):
     - None, however, a file is saved.
 
     """
-    fig = plt.figure(figsize = (15,5))
+    fig = plt.figure(figsize=(15, 5))
     ax = fig.add_subplot(111)
     bp = ax.boxplot(data_lists)
-    ax.set_xticklabels(label_list, rotation = "vertical")
+    ax.set_xticklabels(label_list, rotation="vertical")
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
