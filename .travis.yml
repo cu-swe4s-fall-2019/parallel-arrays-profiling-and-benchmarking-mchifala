@@ -21,3 +21,4 @@ script:
     - pycodestyle test_search.py
     - python test_search.py
     - python test_data_viz.py
+    - bash plot_test.sh
