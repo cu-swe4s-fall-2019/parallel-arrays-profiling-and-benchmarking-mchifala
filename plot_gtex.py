@@ -80,17 +80,21 @@ def linear_process(gene_reads, sample_attributes, gene,
     samples = []
     sample_info_header = None
 
+    # Read and preprocess the data lines
     for l in open(sample_attributes):
         if sample_info_header is None:
             sample_info_header = l.rstrip().split('\t')
         else:
             samples.append(l.rstrip().split('\t'))
 
+    # Find the proper columns containing the group types and sample id's
+    # using linear search
     group_col_idx = linear_search(group_types, sample_info_header)
     sample_id_col_idx = linear_search(sample_id_col_name, sample_info_header)
     groups = []
     members = []
 
+    # Add samples to their respective groups. If group doesn't exist add it
     for row_idx in range(len(samples)):
         sample = samples[row_idx]
         sample_name = sample[sample_id_col_idx]
@@ -110,6 +114,7 @@ def linear_process(gene_reads, sample_attributes, gene,
     gene_name_col = 1
     group_counts = [[] for i in range(len(groups))]
 
+    # Read and preprocess the data lines
     for l in gzip.open(gene_reads, 'rt'):
         if version is None:
             version = l
@@ -125,6 +130,7 @@ def linear_process(gene_reads, sample_attributes, gene,
 
         A = l.rstrip().split('\t')
 
+        # Extracts counts for samples of each group using linear search
         if A[gene_name_col] == gene:
             for group_idx in range(len(groups)):
                 for member in members[group_idx]:
@@ -133,6 +139,7 @@ def linear_process(gene_reads, sample_attributes, gene,
                         group_counts[group_idx].append(int(A[member_idx]))
             break
 
+    # Generate box plot
     boxplot(group_counts, groups, gene, group_types,
             "Gene read counts", output_file)
 
@@ -156,18 +163,23 @@ def binary_process(gene_reads, sample_attributes, gene,
     sample_id_col_name = 'SAMPID'
     samples = []
     sample_info_header = None
+
+    # Read and preprocess the data lines
     for l in open(sample_attributes):
         if sample_info_header is None:
             sample_info_header = l.rstrip().split('\t')
         else:
             samples.append(l.rstrip().split('\t'))
 
+    # Find the proper columns containing the group types and sample id's
+    # using linear search
     group_col_idx = linear_search(group_types, sample_info_header)
     sample_id_col_idx = linear_search(sample_id_col_name, sample_info_header)
 
     groups = []
     members = []
 
+    # Add samples to their respective groups. If group doesn't exist add it
     for row_idx in range(len(samples)):
         sample = samples[row_idx]
         sample_name = sample[sample_id_col_idx]
@@ -190,6 +202,7 @@ def binary_process(gene_reads, sample_attributes, gene,
 
     group_counts = [[] for i in range(len(groups))]
 
+    # Read and preprocess the data lines
     for l in gzip.open(gene_reads, 'rt'):
         if version is None:
             version = l
@@ -211,6 +224,7 @@ def binary_process(gene_reads, sample_attributes, gene,
 
         A = l.rstrip().split('\t')
 
+    # Extracts counts for samples of each group using binary search
         if A[gene_name_col] == gene:
             for group_idx in range(len(groups)):
                 for member in members[group_idx]:
@@ -219,6 +233,7 @@ def binary_process(gene_reads, sample_attributes, gene,
                         group_counts[group_idx].append(int(A[member_idx]))
             break
 
+    # Generate box plot
     boxplot(group_counts, groups, gene, group_types,
             "Gene read counts", output_file)
 

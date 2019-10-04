@@ -76,8 +76,15 @@ test_data_viz.py runs several unit tests on the box plotting functions in data_v
 ```
 python test_data_viz.py
 ```
+
+cProfile measures the performance of function calls and can be used to identify and prioritize future improvements. The following example saves the output of cProfile for plot_gtex.py into "test.txt".
+
+```
+python -m cProfile -s tottime plot_gtex.py --gene_reads GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz --sample_attributes GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt --gene "ACTA2" --group_type SMTS --output_file test.png > test.txt
+```
+
 ### Profiling Results
-The Cprofile results for the script when using linear_search method are included in plot_gtex_linear_search.txt. For the particular run which generated these results, there were 45,904 calls to the linear_search function taking a total of 16.143 seconds out of the 18.328 seconds required to fully execute the script.  
+The Cprofile results for plot_gtex.py when using the linear_search method are included in plot_gtex_linear_search.txt. For the particular run which generated these results, there were 45,904 calls to the linear_search function taking a total of 16.143 seconds out of the 18.328 seconds required to fully execute the script.  
 
 ### Benchmarking Results
 Including all data processing and creation of the resulting box plots, the time to run this script using linear_search method takes ~15 seconds on my machine/environment. The same process using binary_search method takes ~1.5 seconds. 
@@ -93,9 +100,10 @@ Including all data processing and creation of the resulting box plots, the time 
 * Ryan Layer's CSCI 7000 "Continuous Integration with Travis CI" document
 * Ryan Layer's CSCI 7000 "Test-Driven Development" document
 * Ryan Layer's CSCI 7000 "Using libraries: Matplotlib" document
+* Ryan Layer's CSCI 7000 "Profiling and Benchmarking" document
 * PEP8 Style Guidelines: https://www.python.org/dev/peps/pep-0008/
 * Github: PurpleBooth/README-Template.md
-* Files:
-- https://github.com/swe4s/lectures/blob/master/data_integration/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz?raw=true
-- https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+* Data Files:
+    * https://github.com/swe4s/lectures/blob/master/data_integration/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz?raw=true
+    * https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
 
