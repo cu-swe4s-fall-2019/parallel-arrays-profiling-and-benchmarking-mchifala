@@ -12,6 +12,8 @@ class TestPlots(unittest.TestCase):
     This class is used to test the boxplot methods from the data_viz module.
 
     """
+
+    # Test to see if file exists after boxplot is created
     def test_boxplot_exist(self):
         self.data_lists = []
         for i in range(4):
@@ -25,6 +27,7 @@ class TestPlots(unittest.TestCase):
                 self.y_label, self.file)
         self.assertEqual(True, os.path.exists(self.file+".png"))
 
+    # Test making boxplot from empty lists
     def test_boxplot_empty(self):
         self.data_lists = []
         self.file = "boxplot_empty"
@@ -36,6 +39,7 @@ class TestPlots(unittest.TestCase):
                 self.y_label, self.file)
         self.assertEqual(True, os.path.exists(self.file+".png"))
 
+    # Test to see if file exists after boxplot is created
     def test_boxplot_not_exist(self):
         self.data_lists = []
         for i in range(4):

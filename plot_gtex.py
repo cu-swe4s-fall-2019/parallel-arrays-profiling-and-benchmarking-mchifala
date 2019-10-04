@@ -2,12 +2,24 @@ import argparse
 import gzip
 import sys
 import time
+from data_viz import boxplot
 import matplotlib
 matplotlib.use('Agg')
-from data_viz import boxplot
 
 
 def linear_search(key, data_list):
+    """
+    This function linearly searches for a key in a list of data
+    and returns the index of the key if it is found or -1 if it is not.
+
+    Parameters:
+    - key(int or str): The item we are looking for
+    - data_list(list): A list of data
+
+    Returns:
+    - The index of the key in the list or -1
+
+    """
     for i in range(len(data_list)):
         if key == data_list[i]:
             return i
@@ -15,6 +27,18 @@ def linear_search(key, data_list):
 
 
 def binary_search(key, sorted_data_list):
+    """
+    This function uses binary search for a key in a sorted list of data
+    and returns the index of the key if it is found or -1 if it is not.
+
+    Parameters:
+    - key(int or str): The item we are looking for
+    - data_list(list): A sorted list of data
+
+    Returns:
+    - The index of the key in the sorted list or -1
+
+    """
     lo = -1
     hi = len(sorted_data_list)
     while (hi - lo > 1):
@@ -39,11 +63,23 @@ def binary_search(key, sorted_data_list):
 def linear_process(gene_reads, sample_attributes, gene,
                    group_types, output_file):
     """
-    HI
+    This function calculates the gene expression distribution across either
+    tissue groups (SMTS) or tissue type (SMTSD) for a target gene. It uses
+    linear search for parallel arrays. A series of box plots is generated.
+
+    Parameters:
+    - gene_reads: (see next line)
+    GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz
+    - sample_attributes: GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+    - gene: The target gene
+    - group_types: Tissue group or type
+    - output_file: File for saving the box plot (.png)
+
     """
     sample_id_col_name = 'SAMPID'
     samples = []
     sample_info_header = None
+
     for l in open(sample_attributes):
         if sample_info_header is None:
             sample_info_header = l.rstrip().split('\t')
@@ -103,6 +139,20 @@ def linear_process(gene_reads, sample_attributes, gene,
 
 def binary_process(gene_reads, sample_attributes, gene,
                    group_types, output_file):
+    """
+    This function calculates the gene expression distribution across either \
+    tissue groups (SMTS) or tissue type (SMTSD) for a target gene. It uses \
+    binary search for parallel arrays. A series of box plots is generated.
+
+    Parameters:
+    - gene_reads: (see next line)
+    GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz
+    - sample_attributes: GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+    - gene: The target gene
+    - group_types: Tissue group or type
+    - output_file: File for saving the box plot (.png)
+
+    """
     sample_id_col_name = 'SAMPID'
     samples = []
     sample_info_header = None
@@ -174,7 +224,22 @@ def binary_process(gene_reads, sample_attributes, gene,
 
 
 def main(gene_reads, sample_attributes, gene, group_types, output_file):
+    """
+    This function runs both linear_process and binary_process for benchmarking
+    purposes and demonstrates the speed improvement of using binary search.
 
+     Parameters:
+    - gene_reads: (see next line)
+    GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.acmg_59.gct.gz
+    - sample_attributes: GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+    - gene: The target gene
+    - group_types: Tissue group or type
+    - output_file: File for saving the box plot (.png)
+
+    Returns:
+    - None; the total runtimes for each function is printed.
+
+    """
     t0_linear = time.time()
     linear_process(gene_reads, sample_attributes, gene,
                    group_types, output_file)
