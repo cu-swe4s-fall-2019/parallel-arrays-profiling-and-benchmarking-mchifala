@@ -12,7 +12,7 @@ before_install:
     - conda install -y matplotlib
     - conda install -y numpy
     - conda install --yes python=3.6
-    - echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+    - export DISPLAY=:0.0
       
 script:
     - pycodestyle plot_gtex.py
