@@ -1,5 +1,5 @@
-# Parallel Arrays Profiling and Benchmarking 
-V1.0: The goal of this assignment is to use parallel arrays to analyze data as well as profile and benchmark different search algorithms (linear vs. binary). 
+# Submodules (Parallel Arrays Profiling and Benchmarking & Hash Tables)
+V2.0: The goal of this assignment is to redo the parallel arrays and benchmarking assignment using git submodules and hash tables.
 
 ## Getting Started
 
@@ -89,6 +89,8 @@ The Cprofile results for plot_gtex.py when using the linear_search method are in
 ### Benchmarking Results
 Including all data processing and creation of the resulting box plots, the time to run this script using linear_search method takes ~15 seconds on my machine/environment. The same process using binary_search method takes ~1.5 seconds. 
 
+The specific goal of this assignment was to investigate the use of hash tables. Including all data processing and creation of the resulting box plots, the time to run this script using the rolling polynomial hash function and chaining collision resolution strategy was ~ 3.0 seconds. 
+
 ## Authors
 
 **Michael W. Chifala** - University of Colorado, Boulder, CSCI 7000: Software Engineering for Scientists
@@ -101,6 +103,7 @@ Including all data processing and creation of the resulting box plots, the time 
 * Ryan Layer's CSCI 7000 "Test-Driven Development" document
 * Ryan Layer's CSCI 7000 "Using libraries: Matplotlib" document
 * Ryan Layer's CSCI 7000 "Profiling and Benchmarking" document
+* Ryan Layer's CSCI 7000 "Git Submodules" document
 * PEP8 Style Guidelines: https://www.python.org/dev/peps/pep-0008/
 * Github: PurpleBooth/README-Template.md
 * Data Files:
