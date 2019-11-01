@@ -29,6 +29,37 @@ def linear_search(key, data_list):
     return -1
 
 
+def binary_search(key, sorted_data_list):
+    """
+    This function uses binary search for a key in a sorted list of data
+    and returns the index of the key if it is found or -1 if it is not.
+    Parameters:
+    - key(int or str): The item we are looking for
+    - data_list(list): A sorted list of data
+    Returns:
+    - The index of the key in the sorted list or -1
+    """
+    lo = -1
+    hi = len(sorted_data_list)
+    while (hi - lo > 1):
+        mid = (hi + lo) // 2
+
+        if key == sorted_data_list[mid][0]:
+            return sorted_data_list[mid][1]
+
+        try:
+            if (key < sorted_data_list[mid][0]):
+                hi = mid
+            else:
+                lo = mid
+
+        except TypeError as inst:
+            print("Run-Time Error:", type(inst))
+            sys.exit(1)
+
+    return -1
+
+
 def hash_process(gene_reads, sample_attributes, gene,
                  group_types, output_file):
     """
