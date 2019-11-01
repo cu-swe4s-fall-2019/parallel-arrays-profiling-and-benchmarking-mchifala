@@ -15,6 +15,7 @@ before_install:
     - export DISPLAY=:0.0
       
 script:
+    - git submodule update --init
     - pycodestyle plot_gtex.py
     - pycodestyle data_viz.py
     - pycodestyle test_data_viz.py
